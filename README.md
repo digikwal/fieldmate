@@ -1,6 +1,6 @@
 ### Fieldmate
 
-Custom field extensions for ERPNext
+Fieldmate is a lightweight helper app for ERPNext that automates the export and replication of Custom Fields created via the UI. Ideal for teams who want version control, consistency and reusability across multiple sites.
 
 ### Installation
 
