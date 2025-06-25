@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  release-please:
+  AutoRelease:
     runs-on: ubuntu-latest
     outputs:
       pr: ${{ steps.release.outputs.pr }}
@@ -20,9 +20,18 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           release-type: python
+          package-name: fieldmate
+          bump-minor-pre-major: true
+          include-v-in-tag: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get release PR number
+        id: get_pr
+        run: |
+          PR_NUMBER=$(gh pr list --head release-please--branches--main --json number -q '.[0].number')
+          echo "pr=$PR_NUMBER" >> $GITHUB_OUTPUT
+
       - name: Enable Pull Request Automerge
-        run: gh pr merge ${{ github.event.pull_request.number }} --squash --auto
+        run: gh pr merge ${{ steps.get_pr.outputs.pr }} --squash --auto
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
