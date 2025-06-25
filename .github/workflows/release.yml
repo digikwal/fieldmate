@@ -15,6 +15,9 @@ jobs:
     outputs:
       pr: ${{ steps.release.outputs.pr }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
       - name: Run release-please
         id: release
         uses: googleapis/release-please-action@v4
