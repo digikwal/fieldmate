@@ -20,7 +20,5 @@ jobs:
       - name: Run release-please
         id: release
         uses: google-github-actions/release-please-action@v4
-        with:
-          config-file: .github/release-please-config.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
