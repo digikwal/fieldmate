@@ -1,7 +1,12 @@
 name: Auto Merge
+
 on:
-  pull_request_target:
-    types: [opened, labeled]
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - ready_for_review
+      - synchronize
 
 permissions:
   contents: write
