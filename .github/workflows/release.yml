@@ -1,4 +1,4 @@
-name: Auto PR
+name: Auto Release
 
 on:
   push:
@@ -22,8 +22,7 @@ jobs:
           release-type: python
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Enable auto-merge on PR
-        if: ${{ steps.release.outputs.pr }}
-        run: gh pr merge --squash --auto "${{ steps.release.outputs.pr }}"
+      - name: Enable Pull Request Automerge
+        run: gh pr merge ${{ github.event.pull_request.number }} --squash --auto
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
