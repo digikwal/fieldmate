@@ -4,7 +4,6 @@ app_publisher = "Digikwal"
 app_description = "Custom field extensions for ERPNext"
 app_email = "help@digikwal"
 app_license = "mit"
-fixtures = ["Custom Field"]
 
 # Apps
 # ------------------
