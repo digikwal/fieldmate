@@ -1,0 +1,46 @@
+name: Auto Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  AutoRelease:
+    runs-on: ubuntu-latest
+    outputs:
+      pr: ${{ steps.release.outputs.pr }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run release please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: python
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Get release PR number
+        id: get_pr
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          PR_NUMBER=$(gh pr list --head release-please--branches--main --json number -q '.[0].number')
+          echo "pr=$PR_NUMBER"
+          echo "pr=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Enable Auto-Merge or Fallback Merge
+        if: steps.get_pr.outputs.pr != ''
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          PR_NUMBER=${{ steps.get_pr.outputs.pr }}
+          # Try to enable auto-merge first
+          gh pr merge "$PR_NUMBER" --squash --auto --delete-branch || \
+          # If that fails (e.g. already mergeable), fallback to direct merge
+          gh pr merge "$PR_NUMBER" --squash --delete-branch
