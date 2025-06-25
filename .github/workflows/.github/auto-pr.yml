@@ -1,0 +1,26 @@
+name: Release Please
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  release:
+    name: Create Release PR
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'release')"
+    outputs:
+      pr: ${{ steps.release.outputs.pr }}
+    steps:
+      - name: Run release-please
+        id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          config-file: .github/release-please-config.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
