@@ -1,11 +1,10 @@
 import frappe
-from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 from copy import deepcopy
+from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
 def setup_custom_fields():
     ensure_fieldmate_flag_exists()
 
-    # Centralized field templates with allowed doctypes
     field_templates = {
         "x_coc": {
             "fieldname": "x_coc",
@@ -21,7 +20,6 @@ def setup_custom_fields():
             "label": "SBI Code",
             "fieldtype": "Data",
             "insert_after": "x_coc",
-            "unique": 0,
             "x_fieldmate": 1,
             "doctypes": ["Customer", "Supplier", "Company"]
         },
@@ -35,7 +33,6 @@ def setup_custom_fields():
         }
     }
 
-    # Optional field overrides per Doctype
     doctype_overrides = {
         "Company": {
             "x_coc": {
@@ -44,7 +41,6 @@ def setup_custom_fields():
         }
     }
 
-    # Compose final structure per Doctype
     target_doctypes = list({dt for f in field_templates.values() for dt in f["doctypes"]})
     fields = {dt: [] for dt in target_doctypes}
 
@@ -53,7 +49,6 @@ def setup_custom_fields():
             field_def = deepcopy(base_def)
             field_def.pop("doctypes")
 
-            # Apply overrides
             if dt in doctype_overrides and fieldname in doctype_overrides[dt]:
                 if doctype_overrides[dt][fieldname].get("exclude"):
                     continue
@@ -61,7 +56,17 @@ def setup_custom_fields():
 
             fields[dt].append(field_def)
 
-    create_custom_fields(fields, update=True)
+    new_fields = get_new_custom_fields_only(fields)
+    create_custom_fields(new_fields, update=False)
+
+def get_new_custom_fields_only(field_map: dict) -> dict:
+    """Filter out existing Custom Fields to avoid overwriting modified fields."""
+    result = {}
+    for doctype, field_defs in field_map.items():
+        for field in field_defs:
+            if not frappe.db.exists("Custom Field", {"dt": doctype, "fieldname": field["fieldname"]}):
+                result.setdefault(doctype, []).append(field)
+    return result
 
 def ensure_fieldmate_flag_exists():
     """Ensure that the 'Custom Field' Doctype has a 'x_fieldmate' checkbox field."""
@@ -75,4 +80,4 @@ def ensure_fieldmate_flag_exists():
             "insert_before": "fieldtype"
         }).insert(ignore_permissions=True)
         frappe.db.commit()
-        print("Added 'x_fieldmate' field to Custom Field Doctype")
+        frappe.logger("fieldmate").info("Created system field: x_fieldmate on Custom Field")
