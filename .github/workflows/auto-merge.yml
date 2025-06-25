@@ -10,7 +10,7 @@ permissions:
 jobs:
   auto-merge:
     if: |
-      github.actor == 'github-actions[bot]'
+      github.actor == 'github-actions'
     runs-on: ubuntu-latest
     steps:
       - name: Check PR Labels and Author
@@ -24,7 +24,7 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number
             });
-            const isBot = pr.data.user.login === "github-actions[bot]";
+            const isBot = pr.data.user.login === "github-actions";
             const hasLabel = pr.data.labels.some(label => label.name === "autorelease: pending");
             return { isBot, hasLabel };
 
