@@ -29,6 +29,7 @@ jobs:
         id: get_pr
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_DEBUG: api
         run: |
           PR_NUMBER=$(gh pr list --head release-please--branches--main --json number -q '.[0].number')
           echo "pr=$PR_NUMBER" >> $GITHUB_OUTPUT
