@@ -5,10 +5,14 @@ import json
 EXCLUDED_KEYS = ["name", "creation", "modified", "owner", "modified_by", "idx"]
 
 def export_fieldmate_fields(verbose=False):
-    """Export all Custom Fields with x_fieldmate = 1 to individual JSON files."""
+    """Export all x_fieldmate=1 fields to JSON, and clean up deleted ones."""
     export_path = frappe.get_app_path("fieldmate", "custom_field")
     os.makedirs(export_path, exist_ok=True)
 
+    # Track exported filenames
+    exported_files = set()
+
+    # Fetch current active custom fields
     custom_fields = frappe.get_all(
         "Custom Field",
         filters={"x_fieldmate": 1},
@@ -21,23 +25,35 @@ def export_fieldmate_fields(verbose=False):
 
         filename = f'{field["dt"]}--{field["fieldname"]}.json'.replace(" ", "_")
         file_path = os.path.join(export_path, filename)
+        exported_files.add(filename)
 
-        # Avoid unnecessary overwrite if file exists and hasn't changed
+        # Skip if file already matches
         if os.path.exists(file_path):
             with open(file_path, "r", encoding="utf-8") as f:
                 existing = json.load(f)
             if existing == data:
-                continue  # No changes
+                continue
 
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, sort_keys=True, default=str)
 
-        log_message = f"Exported: {filename}"
-        if verbose:
-            print(f"{log_message}")
-        else:
-            frappe.logger("fieldmate").info(log_message)
+        log(f"Exported: {filename}", verbose)
+
+    # Clean up obsolete files
+    all_files = {f for f in os.listdir(export_path) if f.endswith(".json")}
+    obsolete = all_files - exported_files
+    for filename in obsolete:
+        os.remove(os.path.join(export_path, filename))
+        log(f"Deleted: {filename}", verbose)
+        # Optional: stage for git
+        os.system(f"git rm --quiet --cached '{os.path.join(export_path, filename)}' || true")
 
 def sanitize_field_data(data: dict) -> dict:
-    """Prepare field dict for export by removing runtime/system values."""
+    """Strip system metadata from field JSON."""
     return {k: v for k, v in data.items() if k not in EXCLUDED_KEYS}
+
+def log(message: str, verbose: bool = False):
+    if verbose:
+        print(message)
+    else:
+        frappe.logger("fieldmate").info(message)
