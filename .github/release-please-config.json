@@ -1,7 +1,0 @@
-{
-  "release-type": "python",
-  "package-name": "fieldmate",
-  "bump-minor-pre-major": true,
-  "include-v-in-tag": true,
-  "path": "."
-}
