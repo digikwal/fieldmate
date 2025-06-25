@@ -6,7 +6,7 @@ authors = [
 description = "Custom field extensions for ERPNext"
 requires-python = ">=3.10"
 readme = "README.md"
-dynamic = ["0.0.1"]
+dynamic = ["version"]
 dependencies = [
     # "frappe~=15.0.0" # Installed and managed by bench.
 ]
