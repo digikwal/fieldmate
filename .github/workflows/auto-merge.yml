@@ -1,4 +1,4 @@
-name: Auto-merge Release PR
+name: Auto Merge
 on:
   pull_request:
     types: [opened, labeled]
@@ -28,7 +28,7 @@ jobs:
             const hasLabel = pr.data.labels.some(label => label.name === "autorelease: pending");
             return { isBot, hasLabel };
 
-      - name: Auto-merge
+      - name: Merge Filtered PR
         if: |
           fromJSON(steps.Check_PR_Labels_and_Author.outputs.result).isBot &&
           fromJSON(steps.Check_PR_Labels_and_Author.outputs.result).hasLabel
