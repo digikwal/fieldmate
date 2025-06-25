@@ -37,3 +37,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh pr merge ${{ steps.get_pr.outputs.pr }} --squash --auto
+
+      - name: Tag version then release
+        if: steps.get_pr.outputs.pr != ''
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: python
+          token: ${{ secrets.GITHUB_TOKEN }}
