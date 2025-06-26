@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/digikwal/fieldmate/compare/v1.3.0...v1.4.0) (2025-06-26)
+
+
+### Features
+
+* correct fine grained token permissions ([8fbb27b](https://github.com/digikwal/fieldmate/commit/8fbb27b028a20c33fd4ae6dc1679604e27d8aa17))
+
 ## [1.3.0](https://github.com/digikwal/fieldmate/compare/v1.2.0...v1.3.0) (2025-06-26)
 
 
