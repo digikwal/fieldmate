@@ -14,7 +14,7 @@ jobs:
         with:
           repository: digikwal/frappe_docker
           token: ${{ secrets.REPO_DISPATCH_PAT }}
-          path: frappe_docker_temp
+          path: frappe_docker
 
       - name: Configure git
         run: |
@@ -22,21 +22,21 @@ jobs:
           git config --global user.name "Fieldmate Release Bot"
 
       - name: Prepare update
+        working-directory: frappe_docker
         run: |
-          cd docker
-          echo $(date +%s) > fieldmate.version
+          echo $(date +%s) > .apps_versions/fieldmate.version
           git checkout -b fieldmate-auto-release
 
       - name: Commit and push changes
+        working-directory: frappe_docker
         run: |
-          cd docker
-          git add fieldmate.version
+          git add .apps_versions/fieldmate.version
           git commit -m "fieldmate: chore(release): Trigger rebuild after fieldmate release"
           git push origin fieldmate-auto-release --force
 
       - name: Create PR in frappe_docker
+        working-directory: frappe_docker
         run: |
-          cd docker
           gh pr create \
             --title "chore(fieldmate): Trigger rebuild from new fieldmate release" \
             --body "Automated PR triggered by new [release](${{ github.event.release.html_url }}) in **fieldmate**.\n\nIncludes:\n- Trigger for rebuild\n- Optional: changelog info or version ref" \
