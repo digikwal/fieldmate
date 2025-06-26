@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/digikwal/fieldmate/compare/v1.2.0...v1.3.0) (2025-06-26)
+
+
+### Features
+
+* repository dispatch build trigger ([aca4236](https://github.com/digikwal/fieldmate/commit/aca423642670160eef6ca86a847e0b6dc4acb00f))
+
 ## [1.2.0](https://github.com/digikwal/fieldmate/compare/v1.1.0...v1.2.0) (2025-06-25)
 
 
