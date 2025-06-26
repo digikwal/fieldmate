@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/digikwal/fieldmate/compare/v1.6.0...v1.6.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* path to app install function ([10c5499](https://github.com/digikwal/fieldmate/commit/10c5499218f75bfce315bc0f162ceeeac5efe423))
+
 ## [1.6.0](https://github.com/digikwal/fieldmate/compare/v1.5.1...v1.6.0) (2025-06-26)
 
 
