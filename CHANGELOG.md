@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/digikwal/fieldmate/compare/v1.4.0...v1.4.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* restructure directories and files ([4f10023](https://github.com/digikwal/fieldmate/commit/4f10023cfbbd9de3fc519a20ad51040ee86d2eb6))
+
 ## [1.4.0](https://github.com/digikwal/fieldmate/compare/v1.3.0...v1.4.0) (2025-06-26)
 
 
