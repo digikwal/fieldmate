@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/digikwal/fieldmate/compare/v1.4.1...v1.5.0) (2025-06-26)
+
+
+### Features
+
+* cross repo auto pr ([d0a393d](https://github.com/digikwal/fieldmate/commit/d0a393d416e3a339103815dca72234f0fda51ad5))
+
 ## [1.4.1](https://github.com/digikwal/fieldmate/compare/v1.4.0...v1.4.1) (2025-06-26)
 
 
