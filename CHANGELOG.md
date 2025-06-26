@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/digikwal/fieldmate/compare/v1.5.0...v1.5.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* checkout path ([68708c7](https://github.com/digikwal/fieldmate/commit/68708c7672c38b58d75db39918abcd2dbe2a64f4))
+
 ## [1.5.0](https://github.com/digikwal/fieldmate/compare/v1.4.1...v1.5.0) (2025-06-26)
 
 
