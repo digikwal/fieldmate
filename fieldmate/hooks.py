@@ -6,8 +6,8 @@ app_email = "help@digikwal"
 app_license = "mit"
 
 # Run on app install or migrate
-before_app_install = "fieldmate.utils.install.before_app_install"
-after_app_install = "fieldmate.utils.install.after_app_install"
+before_app_install = "fieldmate.setup.install.before_app_install"
+after_app_install = "fieldmate.setup.install.after_app_install"
 after_migrate = "fieldmate.setup.custom_fields.setup_custom_fields"
 
 # Export x_fieldmate fields on update
