@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/digikwal/fieldmate/compare/v1.5.1...v1.6.0) (2025-06-26)
+
+
+### Features
+
+* cross repo pat permissions ([787f921](https://github.com/digikwal/fieldmate/commit/787f9217033683cbff5249022b73f2aac8d0bcb3))
+
 ## [1.5.1](https://github.com/digikwal/fieldmate/compare/v1.5.0...v1.5.1) (2025-06-26)
 
 
