@@ -1,0 +1,46 @@
+name: Trigger Docker PR on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  trigger-docker-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout frappe_docker repo
+        uses: actions/checkout@v4
+        with:
+          repository: digikwal/frappe_docker
+          token: ${{ secrets.REPO_DISPATCH_PAT }}
+          path: frappe_docker_temp
+
+      - name: Configure git
+        run: |
+          git config --global user.email "bot@github.com"
+          git config --global user.name "Fieldmate Release Bot"
+
+      - name: Prepare update
+        run: |
+          cd docker
+          echo $(date +%s) > fieldmate.version
+          git checkout -b fieldmate-auto-release
+
+      - name: Commit and push changes
+        run: |
+          cd docker
+          git add fieldmate.version
+          git commit -m "fieldmate: chore(release): Trigger rebuild after fieldmate release"
+          git push origin fieldmate-auto-release --force
+
+      - name: Create PR in frappe_docker
+        run: |
+          cd docker
+          gh pr create \
+            --title "chore(fieldmate): Trigger rebuild from new fieldmate release" \
+            --body "Automated PR triggered by new [release](${{ github.event.release.html_url }}) in **fieldmate**.\n\nIncludes:\n- Trigger for rebuild\n- Optional: changelog info or version ref" \
+            --base main \
+            --head fieldmate-auto-release
+        env:
+          GH_TOKEN: ${{ secrets.REPO_DISPATCH_PAT }}
