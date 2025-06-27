@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "fieldmate/**"
+  workflow_dispatch: {}
 
 jobs:
   AutoRelease:
