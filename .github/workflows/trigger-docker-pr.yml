@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout frappe_docker repository
       - name: Checkout frappe_docker repo
         uses: actions/checkout@v4
         with:
@@ -16,17 +17,20 @@ jobs:
           token: ${{ secrets.REPO_DISPATCH_PAT }}
           path: frappe_docker
 
-      - name: Configure git
+      # Step 2: Configure Git user details
+      - name: Configure Git
         run: |
           git config --global user.email "bot@github.com"
           git config --global user.name "Fieldmate Release Bot"
 
+      # Step 3: Prepare update by creating a version file and new branch
       - name: Prepare update
         working-directory: frappe_docker
         run: |
           echo $(date +%s) > .apps_versions/fieldmate.version
           git checkout -b fieldmate-auto-release
 
+      # Step 4: Commit and push changes to the new branch
       - name: Commit and push changes
         working-directory: frappe_docker
         run: |
@@ -34,21 +38,24 @@ jobs:
           git commit -m "fieldmate: Trigger rebuild after fieldmate release"
           git push origin fieldmate-auto-release --force
 
+      # Step 5: Create a PR body file with details
+      - name: Create PR body file
+        working-directory: frappe_docker
+        run: |
+          echo "Automated PR triggered by new [release](${{ github.event.release.html_url }}) in **fieldmate**." > pr_body.txt
+          echo "" >> pr_body.txt
+          echo "Includes:" >> pr_body.txt
+          echo "- Trigger for rebuild" >> pr_body.txt
+          echo "- Optional: changelog info or version ref" >> pr_body.txt
+
+      # Step 6: Create a pull request in frappe_docker repository
       - name: Create PR in frappe_docker
         working-directory: frappe_docker
-	run: |
-	  gh pr create \
-	    --title "fieldmate(release): Trigger rebuild from new fieldmate release" \
-	    --body "$(cat <<EOF
-Automated PR triggered by new [release](${{ github.event.release.html_url }}) in **fieldmate**.
-
-      Includes:
-      - Trigger for rebuild
-      - Optional: changelog info or version ref
-      EOF
-      )" \
-	    --base main \
-	    --head fieldmate-auto-release
-	env:
-	  GH_TOKEN: ${{ secrets.REPO_DISPATCH_PAT }}
-
+        run: |
+          gh pr create \
+            --title "fieldmate(release): Trigger rebuild from new fieldmate release" \
+            --body-file pr_body.txt \
+            --base main \
+            --head fieldmate-auto-release
+        env:
+          GH_TOKEN: ${{ secrets.REPO_DISPATCH_PAT }}
