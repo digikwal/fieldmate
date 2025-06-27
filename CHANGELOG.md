@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/digikwal/fieldmate/compare/v1.6.1...v1.6.2) (2025-06-27)
+
+
+### Bug Fixes
+
+* Custom Fields cannot be added to core DocTypes ([854870e](https://github.com/digikwal/fieldmate/commit/854870e1f390c802608b9bca3d445ef034ea17a1))
+
 ## [1.6.1](https://github.com/digikwal/fieldmate/compare/v1.6.0...v1.6.1) (2025-06-26)
 
 
