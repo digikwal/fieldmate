@@ -77,7 +77,9 @@ def ensure_fieldmate_flag_exists():
             "fieldname": "x_fieldmate",
             "label": "Fieldmate Managed",
             "fieldtype": "Check",
-            "insert_before": "fieldtype"
+            "insert_before": "fieldtype",
+			"read_only": 1,
+			"hidden": 1
         }).insert(ignore_permissions=True)
         frappe.db.commit()
         frappe.logger("fieldmate").info("Created system field: x_fieldmate on Custom Field")
