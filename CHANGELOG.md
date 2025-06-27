@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.7.0](https://github.com/digikwal/fieldmate/compare/v1.6.2...v1.7.0) (2025-06-27)
+
+
+### Features
+
+* **ci:** add workflow dispatch ([e913642](https://github.com/digikwal/fieldmate/commit/e91364226a2fa317549e552e2f590d972a81186a))
+
+
+### Bug Fixes
+
+* error in yaml syntax on line 38 ([ae9178e](https://github.com/digikwal/fieldmate/commit/ae9178e1deb689135dd7d206ef97b7d6123bdca6))
+* error in yaml syntax on line 38 ([b7dbe06](https://github.com/digikwal/fieldmate/commit/b7dbe06ac001acb60e9f220e00bfd2645f445f9a))
+
 ## [1.6.2](https://github.com/digikwal/fieldmate/compare/v1.6.1...v1.6.2) (2025-06-27)
 
 
