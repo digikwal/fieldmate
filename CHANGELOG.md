@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/digikwal/fieldmate/compare/v1.7.0...v1.7.1) (2025-06-29)
+
+
+### Bug Fixes
+
+* **refactor:** optimize hook with single-field logic and guard ([cb1321f](https://github.com/digikwal/fieldmate/commit/cb1321fb2fa20441b79d4038cf27085b2ad3abe0))
+
 ## [1.7.0](https://github.com/digikwal/fieldmate/compare/v1.6.2...v1.7.0) (2025-06-27)
 
 
