@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/digikwal/fieldmate/compare/v1.10.0...v1.11.0) (2025-07-30)
+
+
+### Features
+
+* Update include paths to remove redundant 'fieldmate' prefix in templates ([8c7718a](https://github.com/digikwal/fieldmate/commit/8c7718aea10204970683ff20aa64f1ec45f076d5))
+
 ## [1.10.0](https://github.com/digikwal/fieldmate/compare/v1.9.0...v1.10.0) (2025-07-30)
 
 
