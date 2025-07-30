@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/digikwal/fieldmate/compare/v1.8.0...v1.9.0) (2025-07-30)
+
+
+### Features
+
+* Remove deprecated 404 route fixture and update web template structure ([70c58c9](https://github.com/digikwal/fieldmate/commit/70c58c9d9012130a5ae721d0ee9449a47ce673b9))
+
 ## [1.8.0](https://github.com/digikwal/fieldmate/compare/v1.7.1...v1.8.0) (2025-07-30)
 
 
