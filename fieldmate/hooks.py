@@ -20,11 +20,3 @@ doc_events = {
 
 # Include custom CSS and JS files for website
 web_include_css = "/assets/fieldmate/css/main.css"
-
-# Set custom 404 page
-fixtures = [
-    {
-        "doctype": "Website Route",
-        "filters": [["route", "in", ["404"]]]
-    }
-]
