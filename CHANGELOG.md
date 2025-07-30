@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/digikwal/fieldmate/compare/v1.9.0...v1.10.0) (2025-07-30)
+
+
+### Features
+
+* Remove custom 404 page fixture from hooks.py ([6da55b6](https://github.com/digikwal/fieldmate/commit/6da55b61f5812e486878153358c347e0702da006))
+
 ## [1.9.0](https://github.com/digikwal/fieldmate/compare/v1.8.0...v1.9.0) (2025-07-30)
 
 
