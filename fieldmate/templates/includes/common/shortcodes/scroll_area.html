@@ -1,0 +1,15 @@
+{# fieldmate/templates/includes/shortcodes/scroll_area.html #}
+{% macro scroll_area(orientation="vertical") %}
+  <div
+    class="relative overflow-auto p-2 rounded
+    {% if orientation == 'vertical' %}
+      max-h-[400px]
+    {% elif orientation == 'horizontal' %}
+      whitespace-nowrap
+    {% else %}
+      max-h-[400px] whitespace-nowrap
+    {% endif %}"
+  >
+    {{ caller() }}
+  </div>
+{% endmacro %}

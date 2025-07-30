@@ -1,0 +1,22 @@
+<section class="my-12">
+    <div class="text-center">
+      <h1 class="text-h1 font-bold">{{ title }}</h1>
+      <p class="text-lg mt-2">{{ content }}</p>
+      {% if button %}
+        <a href="{{ button.link }}" class="btn btn-primary mt-4">{{ button.label }}</a>
+      {% endif %}
+    </div>
+  
+    {% if carousel %}
+    <div class="relative overflow-hidden max-w-[1024px] mx-auto mt-8">
+      <div class="flex animate-marquee space-x-4 w-[2080px]">
+        {% for item in carousel.items %}
+          <a href="{{ item.subtitle }}" target="_blank" class="w-48 flex-shrink-0 glass rounded-xl p-4">
+            <img src="/assets/{{ item.folder }}/logo.png" alt="{{ item.folder }}" class="object-contain h-16 mx-auto" />
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+  

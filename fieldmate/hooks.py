@@ -1,7 +1,7 @@
 app_name = "fieldmate"
 app_title = "Fieldmate"
 app_publisher = "Digikwal"
-app_description = "Custom field extensions for ERPNext"
+app_description = "Custom field extension and web frontend"
 app_email = "help@digikwal"
 app_license = "mit"
 
@@ -17,3 +17,14 @@ doc_events = {
 		"on_trash": "fieldmate.setup.export_fieldmate_fields"
     }
 }
+
+# Include custom CSS and JS files for website
+web_include_css = "/assets/fieldmate/css/main.css"
+
+# Set custom 404 page
+fixtures = [
+    {
+        "doctype": "Website Route",
+        "filters": [["route", "in", ["404"]]]
+    }
+]

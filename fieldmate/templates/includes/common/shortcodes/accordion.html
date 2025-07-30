@@ -1,0 +1,28 @@
+<div 
+  x-data="{ open: {{ default_open or 'false' }} }" 
+  class="mb-6 overflow-hidden rounded-lg border border-border dark:border-darkmode-border group"
+>
+  <button
+    type="button"
+    @click="open = !open"
+    class="glass-t-borderless flex w-full items-center justify-between px-4 py-2 text-lg text-txt-p dark:text-darkmode-txt-p"
+  >
+    {{ title }}
+    <i 
+      class="las la-chevron-right ml-auto transition-transform duration-300" 
+      :class="{ 'rotate-90': open }"
+    ></i>
+  </button>
+
+  <div 
+    x-ref="container" 
+    x-show="open" 
+    x-collapse 
+    x-transition.duration.300ms 
+    class="px-4 text-gray-700 dark:text-gray-300 overflow-hidden"
+  >
+    <div class="py-2">
+      {{ content or '' }}
+    </div>
+  </div>
+</div>

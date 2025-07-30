@@ -1,0 +1,44 @@
+<!-- Theme switcher logic for light/dark mode -->
+<script>
+    (function () {
+      const defaultTheme = "system";
+  
+      function getTheme(defaultTheme) {
+        let darkMode = defaultTheme === "dark";
+  
+        const userPref = localStorage.getItem("theme");
+        if (userPref === "system") {
+          darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        } else if (userPref === "dark") {
+          darkMode = true;
+        } else if (userPref === "light") {
+          darkMode = false;
+        }
+  
+        return darkMode;
+      }
+  
+      function setTheme(darkMode) {
+        if (darkMode) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+  
+        localStorage.setItem("theme", darkMode ? "dark" : "light");
+      }
+  
+      // On page load
+      document.addEventListener("DOMContentLoaded", () => {
+        setTheme(getTheme(defaultTheme));
+  
+        const themeSwitchers = document.querySelectorAll("[data-theme-switcher]");
+        themeSwitchers.forEach((el) => {
+          el.addEventListener("change", (e) => {
+            setTheme(e.target.checked);
+          });
+        });
+      });
+    })();
+  </script>
+  

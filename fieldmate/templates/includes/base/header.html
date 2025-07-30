@@ -1,0 +1,61 @@
+<header class="container glass py-2 z-30 mb-4 lg:mt-4 lg:rounded-lg sticky top-0">
+  <nav class="relative flex flex-wrap items-center justify-between">
+
+    <!-- Navbar toggler -->
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-0 cursor-pointer flex items-center md:hidden text-txt-p dark:text-darkmode-txt-p lg:order-1"
+    >
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Menu Open</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z" />
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Menu Close</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"
+        />
+      </svg>
+    </label>
+
+    <!-- Midden: dynamisch menu -->
+    <ul
+      id="nav-menu"
+      class="text-center order-3 hidden w-full pb-6 md:order-1 md:flex md:w-auto md:space-x-2 md:pb-0 lg:space-x-4 justify-center items-center mx-auto"
+    >
+      {% for item in navbar_items %}
+        <li>
+          <a href="{{ item.url or item.href }}"
+             class="block p-2 font-secondary font-semibold text-txt-p dark:text-darkmode-txt-p transition lg:px-2 lg:py-3
+               {% if request.path == item.url or request.path == item.url + '/' %}active{% endif %}">
+            {{ _(item.label or item.name) }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Rechterkant: icons -->
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0 gap-4 text-xl text-txt-p dark:text-darkmode-txt-p">
+      <!-- Live Search -->
+      <li>
+        <a class="search-icon" href="#" onclick="document.getElementById('navbar-search').focus();">
+          <i class="las la-search"></i>
+        </a>
+      </li>
+      {% include "templates/includes/navbar/navbar_search.html" %}
+
+      {% if frappe.session.user == "Guest" %}
+        <a href="/login" title="Login"><i class="las la-lock"></i></a>
+      {% elif "System Manager" in frappe.get_roles() %}
+        <a href="/app" title="Desk"><i class="las la-lock-open"></i></a>
+      {% else %}
+        <a href="/me" title="Portal"><i class="las la-lock-open"></i></a>
+      {% endif %}
+
+
+      {% include "fieldmate/templates/includes/theme_switcher.html" %}
+    </div>
+  </nav>
+</header>

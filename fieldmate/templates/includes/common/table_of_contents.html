@@ -1,0 +1,14 @@
+{% if toc and toc|length > 0 %}
+  <nav class="glass rounded-lg p-4 my-4 w-full intersect:animate-fadeLeft opacity-0" aria-label="Table of contents">
+    <h2 class="text-xl font-semibold mb-3">Contents</h2>
+    <ul class="space-y-2 list-none m-0 p-0">
+      {% for heading in toc %}
+        <li class="{% if heading.depth == 2 %}ml-0{% else %}ml-4{% endif %}">
+          <a href="#{{ heading.slug }}" class="block text-txt-p dark:text-darkmode-txt-p hover:underline transition">
+            {{ heading.text }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

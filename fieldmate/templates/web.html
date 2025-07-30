@@ -1,0 +1,17 @@
+{% extends "templates/web_base.html" %}
+
+{% block head %}
+  {% include "fieldmate/includes/base/head_includes.html" %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  {% include "fieldmate/templates/includes/base/header.html" %}
+  <main class="flex-1">
+    {{ content }}
+  </main>
+  {% include "fieldmate/templates/includes/base/background.html" %}
+  {% include "fieldmate/templates/includes/base/footer.html" %}
+  {% include "fieldmate/templates/includes/base/theme_script.html" %}
+  {% include "fieldmate/templates/includes/base/observer_script.html" %}
+{% endblock %}

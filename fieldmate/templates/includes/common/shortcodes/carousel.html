@@ -1,0 +1,46 @@
+<!-- Carousel wrapper -->
+<div class="relative overflow-hidden max-w-[1024px] mx-auto">
+    <div class="flex animate-marquee space-x-4 w-[2080px]">
+      {% for item in items + items %}
+        <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer"
+           class="w-48 flex-shrink-0 flex flex-col items-center justify-center 
+                  rounded-xl shadow-md p-4 transition overflow-hidden 
+                  bg-white/10 border border-white/20 backdrop-blur-md">
+  
+          {% if item.images %}
+            <div class="relative w-32 h-16" data-logo-rotator>
+              {% for image in item.images %}
+                <img src="{{ image }}"
+                     alt="Client logo {{ loop.index }}"
+                     class="absolute top-0 left-0 w-full h-full object-contain 
+                            transition-opacity duration-1000 ease-in-out 
+                            {% if not loop.first %}opacity-0{% endif %}"
+                     data-logo />
+              {% endfor %}
+            </div>
+          {% endif %}
+  
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <!-- Logo rotator script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('[data-logo-rotator]').forEach((container) => {
+        const logos = container.querySelectorAll('[data-logo]');
+        if (logos.length <= 1) return;
+  
+        let index = 0;
+        setInterval(() => {
+          logos.forEach((el, i) => {
+            el.style.opacity = i === index ? "1" : "0";
+            el.style.zIndex = i === index ? "10" : "0";
+          });
+          index = (index + 1) % logos.length;
+        }, 3000);
+      });
+    });
+  </script>
+  

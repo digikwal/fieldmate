@@ -1,0 +1,10 @@
+[
+    {
+      "doctype": "Website Route",
+      "route": "404",
+      "is_404": 1,
+      "web_template": "Not Found",
+      "published": 1
+    }
+  ]
+  

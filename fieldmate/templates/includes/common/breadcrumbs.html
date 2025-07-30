@@ -1,0 +1,34 @@
+{%- set current_path = frappe.request.path | trim('/') | split('/') -%}
+{%- set parts = [] -%}
+{%- set _ = parts.append({'label': 'Home', 'href': '/'}) -%}
+
+{%- set accumulated = '' -%}
+{%- for segment in current_path -%}
+  {%- set accumulated = accumulated + '/' + segment -%}
+  {%- if segment != 'page' -%}
+    {%- set label = segment.replace('-', ' ').replace('_', ' ').capitalize() -%}
+    {%- set _ = parts.append({'label': label, 'href': accumulated}) -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<nav aria-label="Breadcrumb" class="mb-4">
+  <ol class="inline-flex" role="list">
+    {%- for item in parts %}
+      <li class="mx-1 capitalize" role="listitem">
+        {%- if not loop.first -%}
+          <span class="inline-block mr-1">/</span>
+        {%- endif -%}
+
+        {%- if not loop.last %}
+          <a href="{{ item.href }}" class="text-txt-p dark:text-darkmode-txt-p">
+            {{ item.label }}
+          </a>
+        {%- else %}
+          <span class="text-txt-light dark:text-darkmode-txt-light">
+            {{ item.label }}
+          </span>
+        {%- endif %}
+      </li>
+    {%- endfor %}
+  </ol>
+</nav>

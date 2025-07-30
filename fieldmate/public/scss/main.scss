@@ -1,0 +1,22 @@
+// fieldmate/public/scss/main.scss
+@import "fonts";
+@import "base";
+@import "prose";
+@import "glass";
+@import "utilities";
+
+.scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(180, 180, 180, 0.4) transparent;
+  }
+  
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(180, 180, 180, 0.4);
+    border-radius: 3px;
+  }
+  

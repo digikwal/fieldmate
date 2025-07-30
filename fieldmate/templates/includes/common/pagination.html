@@ -1,0 +1,77 @@
+{%- macro pagination(collection=None, page_index=1, page_count=1, page_ids=[]) -%}
+  {% set page_index = page_index | int %}
+  {% set page_count = page_count | int %}
+  {% set page_ids = page_ids or [] %}
+
+  {% set prev_page = None %}
+  {% set next_page = None %}
+
+  {% if page_ids %}
+    {% if page_index > 0 %}
+      {% set prev_page = "/" + (collection ~ "/" if collection else "") + page_ids[page_index - 1] %}
+    {% endif %}
+    {% if page_index < page_count - 1 %}
+      {% set next_page = "/" + (collection ~ "/" if collection else "") + page_ids[page_index + 1] %}
+    {% endif %}
+  {% else %}
+    {% if page_index == 2 %}
+      {% set prev_page = "/" + (collection if collection else "") %}
+    {% elif page_index > 2 %}
+      {% set prev_page = "/" + (collection ~ "/page/" if collection else "page/") + (page_index - 1) %}
+    {% endif %}
+    {% if page_index < page_count %}
+      {% set next_page = "/" + (collection ~ "/page/" if collection else "page/") + (page_index + 1) %}
+    {% endif %}
+  {% endif %}
+
+  {% if page_count > 1 %}
+  <nav class="flex items-center justify-center pb-8">
+    <div class="row glass rounded-md p-2 m-2 space-x-2 intersect:animate-fadeUp opacity-0">
+
+      {# Previous #}
+      {% if prev_page %}
+        <a href="{{ prev_page }}" class="col rounded px-2 py-1.5 text-txt-p dark:text-darkmode-txt-p" aria-label="Previous">
+          <i class="las la-arrow-left"></i>
+        </a>
+      {% else %}
+        <span class="col rounded px-2 py-1.5 text-txt-light dark:text-darkmode-txt-light" aria-label="Previous">
+          <i class="las la-arrow-left"></i>
+        </span>
+      {% endif %}
+
+      {# Page index #}
+      {% if page_ids %}
+        <div aria-current="page" class="col rounded px-4 py-2 text-txt-p dark:text-darkmode-txt-p">
+          {{ page_index + 1 }}
+        </div>
+      {% else %}
+        {% for i in range(1, page_count + 1) %}
+          {% if i == page_index %}
+            <span aria-current="page" class="col rounded px-4 py-2 font-semibold text-txt-p dark:text-darkmode-txt-p border border-txt-light dark:border-darkmode-txt-light">
+              {{ i }}
+            </span>
+          {% else %}
+            <a href="{{ '/' ~ (collection ~ '/' if collection else '') ~ ('page/' ~ i if i > 1 else '') }}"
+               aria-current="page"
+               class="col rounded px-4 py-2 font-semibold text-txt-p dark:text-darkmode-txt-p">
+              {{ i }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {# Next #}
+      {% if next_page %}
+        <a href="{{ next_page }}" class="col rounded px-2 py-1.5 text-txt-p dark:text-darkmode-txt-p" aria-label="Next">
+          <i class="las la-arrow-right"></i>
+        </a>
+      {% else %}
+        <span class="col rounded px-2 py-1.5 text-txt-light dark:text-darkmode-txt-light" aria-label="Next">
+          <i class="las la-arrow-right"></i>
+        </span>
+      {% endif %}
+
+    </div>
+  </nav>
+  {% endif %}
+{%- endmacro %}

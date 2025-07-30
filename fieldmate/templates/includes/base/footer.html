@@ -1,0 +1,29 @@
+<footer class="glass container my-4 rounded-lg animate-fadeUp opacity-0">
+    <div class="flex flex-wrap items-center justify-between py-4 gap-y-2">
+      <!-- Copyright -->
+      <div class="w-full lg:w-1/2 text-center lg:text-left">
+        <p class="text-sm">
+          <a href="/terms" class="hover:underline">
+            &copy; {{ frappe.utils.formatdate(frappe.utils.nowdate(), "yyyy") }} Digikwal, V.O.F. All rights reserved.
+          </a>
+        </p>
+      </div>
+  
+      <!-- Social Links -->
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end space-x-4">
+        {% set socials = {
+          "facebook": "https://www.facebook.com/",
+          "github": "https://www.github.com/",
+          "instagram": "https://www.instagram.com/",
+          "linkedin": "https://www.linkedin.com/"
+        } %}
+  
+        {% for name, url in socials.items() %}
+          <a href="{{ url }}" class="text-muted hover:text-primary" target="_blank" rel="noopener noreferrer">
+            <i class="lab la-{{ name | lower }} text-xl"></i>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </footer>
+  

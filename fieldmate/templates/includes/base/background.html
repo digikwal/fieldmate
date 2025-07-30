@@ -1,0 +1,36 @@
+<style>
+    html::before,
+    html::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+      transition: opacity 0.25s ease-in-out;
+      pointer-events: none;
+    }
+  
+    html::before {
+      background-image: url("/assets/fieldmate/backgrounds/bwca-day.png");
+      opacity: 1;
+    }
+  
+    html.dark::before {
+      opacity: 0;
+    }
+  
+    html::after {
+      background-image: url("/assets/fieldmate/backgrounds/bwca-night.png");
+      opacity: 0;
+    }
+  
+    html.dark::after {
+      opacity: 1;
+    }
+  </style>
+  

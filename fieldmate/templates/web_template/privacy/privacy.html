@@ -1,0 +1,33 @@
+<main class="container py-8">
+    <section class="max-w-3xl mx-auto">
+      <h1 class="text-h1 mb-6">{{ _("Privacybeleid") }}</h1>
+  
+      <p class="mb-6">
+        {{ _("Jouw privacy is belangrijk voor ons. Hieronder vind je antwoord op de meest gestelde vragen over hoe wij omgaan met gegevens.") }}
+      </p>
+  
+      {% for item in doc.accordion %}
+      <details class="mb-4 overflow-hidden rounded-lg border border-border dark:border-darkmode-border group" open>
+        <summary class="glass-t-borderless flex w-full cursor-pointer items-center justify-between px-4 py-2 text-lg text-txt-p dark:text-darkmode-txt-p">
+          {{ item.title }}
+          <span class="ml-auto">&#9656;</span>
+        </summary>
+        <div class="px-4 py-2 text-txt-s dark:text-darkmode-txt-s">{{ item.content }}</div>
+      </details>
+      {% endfor %}
+  
+      <div class="mt-10 glass p-4 rounded-lg">
+        <h2 class="text-h3">{{ doc.contact.title }}</h2>
+        <p>{{ doc.contact.text }}</p>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a href="{{ doc.contact.email.href }}" class="text-blue-500 underline">{{ doc.contact.email.label }}</a>
+          </li>
+          <li>
+            <a href="{{ doc.contact.phone.href }}" class="text-blue-500 underline">{{ doc.contact.phone.label }}</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  

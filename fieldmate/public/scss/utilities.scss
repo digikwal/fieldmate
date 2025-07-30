@@ -1,0 +1,63 @@
+/* Section spacing utilities */
+.section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 1280px) {
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.section-sm {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 1280px) {
+  .section-sm {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* Container */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Border radius utilities */
+.rounded-sm {
+  border-radius: 4px;
+}
+
+.rounded {
+  border-radius: 6px;
+}
+
+.rounded-lg {
+  border-radius: 12px;
+}
+
+.rounded-xl {
+  border-radius: 16px;
+}
+
+/* Header toggler for mobile nav */
+input#nav-toggle:checked + label #show-button {
+  display: none;
+}
+
+input#nav-toggle:checked + label #hide-button {
+  display: block;
+}
+
+input#nav-toggle:checked ~ #nav-menu {
+  display: block;
+}
