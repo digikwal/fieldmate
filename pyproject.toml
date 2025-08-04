@@ -3,7 +3,7 @@ name = "fieldmate"
 authors = [
     { name = "Digikwal", email = "help@digikwal"}
 ]
-description = "Custom field extensions for ERPNext"
+description = "Custom app for ERPNext"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]
