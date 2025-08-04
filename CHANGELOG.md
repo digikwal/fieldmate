@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.1](https://github.com/digikwal/fieldmate/compare/v1.11.0...v1.11.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* Update include paths to use the correct template directory structure ([902dff0](https://github.com/digikwal/fieldmate/commit/902dff032abfb3fd87f2f708aac37d1671fd9c2d))
+
 ## [1.11.0](https://github.com/digikwal/fieldmate/compare/v1.10.0...v1.11.0) (2025-07-30)
 
 
