@@ -17,6 +17,3 @@ doc_events = {
 		"on_trash": "fieldmate.setup.export_fieldmate_fields"
     }
 }
-
-# Include custom CSS and JS files for website
-web_include_css = "/assets/fieldmate/css/main.css"
