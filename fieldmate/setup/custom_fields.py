@@ -2,6 +2,16 @@ import frappe
 from copy import deepcopy
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 
+"""
+Custom Field Setup Utility
+
+- All custom fields managed by Fieldmate should start with 'x_'.
+- Field definitions are provided as dicts in `field_templates`.
+- Doctypes field specifies one or more doctypes to which fields should be added.
+- If a field requires doctype-specific configuration, use `doctype_overrides`.
+- This function ensures the 'x_fieldmate' flag exists, prepares field definitions,
+  applies overrides, and creates only new custom fields (does not overwrite existing ones).
+"""
 def setup_custom_fields():
     ensure_fieldmate_flag_exists()
 
@@ -30,9 +40,18 @@ def setup_custom_fields():
             "insert_before": "job_title",
             "x_fieldmate": 1,
             "doctypes": ["Lead"]
+        },
+        "x_href": {
+            "fieldname": "x_href",
+            "label": "Custom html reference",
+            "fieldtype": "Data",
+            "insert_after": "file_size",
+            "x_fieldmate": 1,
+            "doctypes": ["File"]
         }
     }
 
+    # Per-doctype overrides for field placement or exclusion
     doctype_overrides = {
         "Company": {
             "x_coc": {
@@ -41,22 +60,28 @@ def setup_custom_fields():
         }
     }
 
+    # Collect all target doctypes from field templates
     target_doctypes = list({dt for f in field_templates.values() for dt in f["doctypes"]})
     fields = {dt: [] for dt in target_doctypes}
 
+    # Build field definitions for each doctype, applying overrides if present
     for fieldname, base_def in field_templates.items():
         for dt in base_def.get("doctypes", []):
             field_def = deepcopy(base_def)
-            field_def.pop("doctypes")
+            field_def.pop("doctypes") # Remove doctypes key for actual field definition
 
+            # Apply doctype-specific overrides if available
             if dt in doctype_overrides and fieldname in doctype_overrides[dt]:
+                # Skip field if explicitly excluded
                 if doctype_overrides[dt][fieldname].get("exclude"):
                     continue
                 field_def.update(doctype_overrides[dt][fieldname])
 
             fields[dt].append(field_def)
 
+    # Filter out fields that already exist to avoid overwriting user changes
     new_fields = get_new_custom_fields_only(fields)
+    # Create only the new custom fields (no update of existing fields)
     create_custom_fields(new_fields, update=False)
 
 def get_new_custom_fields_only(field_map: dict) -> dict:
