@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.1](https://github.com/digikwal/fieldmate/compare/v1.13.0...v1.13.1) (2025-08-11)
+
+
+### Bug Fixes
+
+* Remove custom CSS and JS inclusion from hooks.py and add .gitkeep to public directory ([e44ead6](https://github.com/digikwal/fieldmate/commit/e44ead602953e26f4c187c1041e14b1408bca671))
+* Remove unused template files and components to streamline the project structure. This includes the button, entry header, page header, pagination, share, accordion, carousel, notice, scroll area, social links, table of contents, contact form, login form, and various web templates such as contact, home, login, not-found, privacy, and terms. This cleanup enhances maintainability and reduces clutter in the codebase. ([3b1981f](https://github.com/digikwal/fieldmate/commit/3b1981f0e5ccb0955c62cda0b87f7445cb824a50))
+
 ## [1.13.0](https://github.com/digikwal/fieldmate/compare/v1.12.0...v1.13.0) (2025-08-11)
 
 
