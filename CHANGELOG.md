@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/digikwal/fieldmate/compare/v1.12.0...v1.13.0) (2025-08-11)
+
+
+### Features
+
+* Add x_href field for settings custom html to uploaded files ([33b931f](https://github.com/digikwal/fieldmate/commit/33b931f8b27ff03778d46d0b4b834e40562d5b9f))
+
 ## [1.12.0](https://github.com/digikwal/fieldmate/compare/v1.11.1...v1.12.0) (2025-08-11)
 
 
