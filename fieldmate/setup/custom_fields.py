@@ -48,6 +48,14 @@ def setup_custom_fields():
             "insert_after": "file_size",
             "x_fieldmate": 1,
             "doctypes": ["File"]
+        },
+        "x_fileReplace": {
+            "fieldname": "x_fileReplace",
+            "label": "Replace file on upload",
+            "fieldtype": "Check",
+            "insert_after": "file_type",
+            "x_fieldmate": 1,
+            "doctypes": ["File"]
         }
     }
 
