@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/digikwal/fieldmate/compare/v1.14.0...v1.14.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* Rename module to Filetools and add .gitignore for node_modules; implement file handling logic in filetools.js ([2d14bbe](https://github.com/digikwal/fieldmate/commit/2d14bbed2bd7918a5fc3458250deeb07c4c9e67d))
+
 ## [1.14.0](https://github.com/digikwal/fieldmate/compare/v1.13.1...v1.14.0) (2025-08-13)
 
 
