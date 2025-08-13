@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/digikwal/fieldmate/compare/v1.13.1...v1.14.0) (2025-08-13)
+
+
+### Features
+
+* Implement file replacement functionality for public assets in the website folder ([c85ef86](https://github.com/digikwal/fieldmate/commit/c85ef86b52452279dfa5aafdd25b7a0f20f512ce))
+
 ## [1.13.1](https://github.com/digikwal/fieldmate/compare/v1.13.0...v1.13.1) (2025-08-11)
 
 
