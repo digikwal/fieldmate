@@ -56,6 +56,22 @@ def setup_custom_fields():
             "insert_after": "file_type",
             "x_fieldmate": 1,
             "doctypes": ["File"]
+        },
+        "x_accDescription": {
+            "fieldname": "x_accDescription",
+            "label": "Account Description",
+            "fieldtype": "Small Text",
+            "insert_after": "account_name",
+            "x_fieldmate": 1,
+            "doctypes": ["Account"]
+        },
+        "x_accSorting": {
+            "fieldname": "x_accSorting",
+            "label": "Account Sorting Code",
+            "fieldtype": "Data",
+            "insert_after": "account_number",
+            "x_fieldmate": 1,
+            "doctypes": ["Account"]
         }
     }
 
