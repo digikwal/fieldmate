@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/digikwal/fieldmate/compare/v1.14.1...v1.15.0) (2025-08-29)
+
+
+### Features
+
+* Add custom fields for Account with description and sorting code ([ddb8675](https://github.com/digikwal/fieldmate/commit/ddb8675b6ae79932a60365e5726c88e0baed54d8))
+
 ## [1.14.1](https://github.com/digikwal/fieldmate/compare/v1.14.0...v1.14.1) (2025-08-13)
 
 
